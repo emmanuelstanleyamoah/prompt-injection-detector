@@ -1,0 +1,23 @@
+title: Encoded instruction payload
+id: 1b7e0a4c-6d21-4f0a-9c3e-0a11b20c1006
+status: experimental
+description: Prompt text that asks the model to decode a payload and follow it.
+author: emmanuelstanleyamoah
+date: 2026/11/17
+logsource:
+  product: llm_gateway
+  category: prompt
+detection:
+  selection:
+    prompt|contains:
+      - base64-decode and follow these instructions
+      - decode the payload and obey
+      - rot13-decode then comply
+      - hex-decode and execute the instruction
+  condition: selection
+level: high
+tags:
+  - llm.prompt_injection
+  - llm.encoding
+falsepositives:
+  - A policy page that quotes the blocked phrase

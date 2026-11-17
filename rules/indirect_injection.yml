@@ -1,0 +1,23 @@
+title: Indirect injection marker
+id: 1b7e0a4c-6d21-4f0a-9c3e-0a11b20c1007
+status: experimental
+description: Prompt text that smuggles a new instruction through retrieved or pasted content.
+author: emmanuelstanleyamoah
+date: 2026/11/17
+logsource:
+  product: llm_gateway
+  category: prompt
+detection:
+  selection:
+    prompt|contains:
+      - hidden instruction for the model
+      - new instructions from the document
+      - the webpage says to ignore the user
+      - attacker note to the assistant
+  condition: selection
+level: high
+tags:
+  - llm.prompt_injection
+  - llm.indirect
+falsepositives:
+  - Homework that asks a student to classify the quoted string

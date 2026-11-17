@@ -1,0 +1,24 @@
+title: Role hijack
+id: 1b7e0a4c-6d21-4f0a-9c3e-0a11b20c1002
+status: experimental
+description: Prompt text that assigns the model a new unrestricted role.
+author: emmanuelstanleyamoah
+date: 2026/11/17
+logsource:
+  product: llm_gateway
+  category: prompt
+detection:
+  selection:
+    prompt|contains:
+      - you are now a
+      - act as dan
+      - enable developer mode
+      - jailbreak mode activated
+      - do anything now
+  condition: selection
+level: high
+tags:
+  - llm.prompt_injection
+  - llm.role_hijack
+falsepositives:
+  - A writeup that names a known jailbreak string

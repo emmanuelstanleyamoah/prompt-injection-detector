@@ -1,0 +1,24 @@
+title: Fake system delimiter
+id: 1b7e0a4c-6d21-4f0a-9c3e-0a11b20c1004
+status: experimental
+description: Prompt text that inserts a fake system or chat delimiter.
+author: emmanuelstanleyamoah
+date: 2026/11/17
+logsource:
+  product: llm_gateway
+  category: prompt
+detection:
+  selection:
+    prompt|contains:
+      - <|im_start|>system
+      - "[installed_system]"
+      - "### new system prompt"
+      - </system_instructions>
+      - <system_override>
+  condition: selection
+level: high
+tags:
+  - llm.prompt_injection
+  - llm.delimiter
+falsepositives:
+  - Documentation that shows the delimiter the filter looks for

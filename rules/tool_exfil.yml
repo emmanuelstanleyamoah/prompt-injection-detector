@@ -1,0 +1,24 @@
+title: Tool or conversation exfiltration
+id: 1b7e0a4c-6d21-4f0a-9c3e-0a11b20c1005
+status: experimental
+description: Prompt text that tells the model to send the conversation or hidden prompt elsewhere.
+author: emmanuelstanleyamoah
+date: 2026/11/17
+logsource:
+  product: llm_gateway
+  category: prompt
+detection:
+  selection:
+    prompt|contains:
+      - exfiltrate the conversation
+      - send this chat to https://
+      - post the system prompt to
+      - curl the hidden prompt
+      - upload secrets to webhook
+  condition: selection
+level: high
+tags:
+  - llm.prompt_injection
+  - llm.exfiltration
+falsepositives:
+  - A runbook that names the string analysts should search for
